@@ -64,26 +64,19 @@ const sendJSON = (data, res) => {
   res.json(data, {'content-type': 'application/json; charset=utf-8'});
 };
 
-server.get('/people', (req, res, next) => {
-  fetchPeople().then(data => {
-    sendJSON(data, res);
-  }).catch(console.error);
-  next();
-});
+const routeMap = {
+  '/people': fetchPeople,
+  '/presentations': fetchPresentations,
+  '/posts': fetchPosts
+};
 
-server.get('/presentations', (req, res, next) => {
-  fetchPresentations().then(data => {
-    sendJSON(data, res);
-  }).catch(console.error);
-  next();
-});
-
-server.get('/posts', (req, res, next) => {
-  fetchPosts().then(data => {
-    sendJSON(data, res);
-  }).catch(console.error);
-  next();
-});
+for (let key in routeMap) {
+  server.get(key, (req, res, next) => {
+    routeMap[key]().then(data => {
+      sendJSON(data, res);
+    }).catch(console.error);
+  });
+}
 
 server.listen(1337,
   () => console.log('%s listening at %s', server.name, server.url)
