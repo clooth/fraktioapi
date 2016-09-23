@@ -4,9 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node --harmony index.js"
   },
   "keywords": [],
   "author": "Nico Hämäläinen <nico@sizeof.io> (http://sizeof.io/)",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.14.0",
+    "moment": "^2.15.1",
+    "restify": "^4.1.1"
+  }
 }
