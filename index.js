@@ -16,7 +16,7 @@ const fetchPosts = () =>
     .then(res => res.data)
     .then(res => res.map(({ id, date, title, content, excerpt }) => ({
       id,
-      date,
+      date: moment(date).unix(),
       title: title.rendered,
       content: content.rendered,
       excerpt: excerpt.rendered,
