@@ -6,7 +6,11 @@ const moment = require('moment');
 // API client
 const client = axios.create({
   baseURL: 'https://fraktio.fi/wp-json/wp/v2/',
-  timeout: 5000
+  timeout: 5000,
+  auth: {
+    username: process.env.API_USERNAME,
+    password: process.env.API_PASSWORD
+  }
 });
 
 // Fetch all blog posts
