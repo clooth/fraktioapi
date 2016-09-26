@@ -82,6 +82,6 @@ for (let key in routeMap) {
   });
 }
 
-server.listen(1337,
+server.listen(process.env.API_PORT || 1337,
   () => console.log('%s listening at %s', server.name, server.url)
 );
