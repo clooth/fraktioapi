@@ -71,6 +71,7 @@ const sendJSON = (data, res) => {
 const routeMap = {
   '/people': fetchPeople,
   '/presentations': fetchPresentations,
+  '/tussi': fetchPresentations,
   '/posts': fetchPosts
 };
 
