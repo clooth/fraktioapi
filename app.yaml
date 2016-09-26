@@ -9,4 +9,4 @@ skip_files:
  
 network:
   forwarded_ports:
-  - 1337
+  - 1337:8080
