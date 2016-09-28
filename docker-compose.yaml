@@ -1,0 +1,29 @@
+version: "2"
+services:
+  fraktioapi:
+    build:
+      context: .
+      dockerfile: docker/node/Dockerfile
+    
+  proxy:
+    environment:
+      - VIRTUAL_HOST=api.fraktio.fi
+      - LETSENCRYPT_HOST=api.fraktio.fi
+      - LETSENCRYPT_EMAIL=admin+api@fraktio.fi
+    ports:
+      - "80"
+    links:
+      - "fraktioapi:fraktioapi"
+    restart: always
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+    networks:
+      - default
+      - fraktiodocker_default
+    
+
+networks:
+  fraktiodocker_default:
+    external:
+      name: fraktiodocker_default
